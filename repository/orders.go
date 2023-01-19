@@ -61,5 +61,9 @@ func InsertOrder(db *sql.DB, order structs.Orders) (err error) {
 
 	errs := db.QueryRow(sql, order.Users_id, order.Products_id, order.Total_price, order.Total_bought, time.Now(), time.Now())
 
+	sql2 := "UPDATE tbl_products SET product_stock = product_stock - 1 WHERE id= $1"
+
+	errs = db.QueryRow(sql2, order.Products_id)
+
 	return errs.Err()
 }
