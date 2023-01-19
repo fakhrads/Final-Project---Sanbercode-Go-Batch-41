@@ -20,10 +20,10 @@ type Product struct {
 
 type Orders struct {
 	ID           int    `json:"id"`
-	Users_id     string `json:"users_id"`
-	Products_id  string `json:"products_id"`
-	Total_price  string `json:"total_price"`
-	Total_bought string `json:"total_bought"`
+	Users_id     int    `json:"users_id"`
+	Products_id  int    `json:"products_id"`
+	Total_price  int    `json:"total_price"`
+	Total_bought int    `json:"total_bought"`
 	Created_at   string `json:"created_at"`
 	Updated_at   string `json:"updated_at"`
 }

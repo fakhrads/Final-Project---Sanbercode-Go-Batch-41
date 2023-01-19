@@ -37,9 +37,8 @@ func Login(c *fiber.Ctx) error {
 	}
 	// Create the Claims
 	claims := jwt.MapClaims{
-		"name":  "John Doe",
-		"admin": true,
-		"exp":   time.Now().Add(time.Hour * 72).Unix(),
+		"username": body.Username,
+		"exp":      time.Now().Add(time.Hour * 72).Unix(),
 	}
 
 	// Create token
@@ -51,5 +50,5 @@ func Login(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 
-	return c.JSON(fiber.Map{"token": t})
+	return c.JSON(fiber.Map{"username": body.Username, "token": t})
 }

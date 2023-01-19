@@ -15,7 +15,7 @@ func GetOrder(c *fiber.Ctx) error {
 	if err != nil {
 		fmt.Println(orders)
 	}
-	return c.JSON(fiber.Map{"status": "success", "data": err})
+	return c.JSON(fiber.Map{"status": "success", "data": orders})
 }
 
 func GetOrders(c *fiber.Ctx) error {
@@ -30,7 +30,7 @@ func GetOrders(c *fiber.Ctx) error {
 
 	products, err := repository.GetAllOrderById(database.DbConnection, order)
 	fmt.Println(products)
-	return c.JSON(fiber.Map{"status": "success", "message": products})
+	return c.JSON(fiber.Map{"status": "success", "message": err})
 
 }
 
@@ -43,7 +43,7 @@ func StoreOrder(c *fiber.Ctx) error {
 		panic(err)
 	}
 
-	err = repository.InsertOrder(database.DbConnection, order)
+	err, _ = repository.InsertOrder(database.DbConnection, order)
 
 	if err != nil {
 		panic(err)

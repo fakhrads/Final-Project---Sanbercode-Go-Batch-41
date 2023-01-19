@@ -8,9 +8,7 @@ CREATE  TABLE tbl_orders (
 	total_price          integer DEFAULT 0,
 	total_bought         integer,
 	created_at           date,
-	updated_at           date,
-	CONSTRAINT unq_tbl_orders_users_id UNIQUE ( users_id ),
-	CONSTRAINT unq_tbl_orders_products_id UNIQUE ( products_id ) 
+	updated_at           date
 );
 
 -- +migrate StatementEnd
