@@ -8,29 +8,31 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
-func SetupRoutes(app *fiber.App) {
+func SetupRoutes(api *fiber.App) {
+
+	app := api.Group("/api/v1")
 	app.Post("/login", handler.Login)
-	app.Post("/api/v1/register", handler.StoreUser)
+	app.Post("/register", handler.StoreUser)
 
 	// JWT Middleware
 	app.Use(jwtware.New(jwtware.Config{
 		SigningKey: []byte("secret"),
 	}))
 
-	app.Get("/api/v1/user", handler.GetUser)
-	app.Get("/api/v1/user/:id", handler.GetUsers)
-	app.Put("/api/v1/user/update/:id", handler.UpdateUser)
-	app.Delete("/api/v1/user/:id", handler.DeleteUser)
+	app.Get("/user", handler.GetUser)
+	app.Get("/user/:id", handler.GetUsers)
+	app.Put("/user/update/:id", handler.UpdateUser)
+	app.Delete("/user/:id", handler.DeleteUser)
 
-	app.Get("/api/v1/product", handler.GetProduct)
-	app.Put("/api/v1/product/update/:id", handler.UpdateProduct)
-	app.Get("/api/v1/product/:id", handler.GetProducts)
-	app.Post("/api/v1/product", handler.StoreProduct)
-	app.Delete("/api/v1/product/:id", handler.DeleteProduct)
+	app.Get("/product", handler.GetProduct)
+	app.Put("/product/update/:id", handler.UpdateProduct)
+	app.Get("/product/:id", handler.GetProducts)
+	app.Post("/product", handler.StoreProduct)
+	app.Delete("/product/:id", handler.DeleteProduct)
 
-	app.Get("/api/v1/order", handler.GetOrder)
-	app.Get("/api/v1/order/:id", handler.GetOrders)
-	app.Post("/api/v1/order", handler.StoreOrder)
+	app.Get("/order", handler.GetOrder)
+	app.Get("/order/:id", handler.GetOrders)
+	app.Post("/order", handler.StoreOrder)
 }
 
 func accessible(c *fiber.Ctx) error {
