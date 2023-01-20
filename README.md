@@ -1,7 +1,10 @@
 #### Langkah Penggunaan
 `git clone https://github.com/fakhrads/Final-Project---Sanbercode-Go-Batch-41`
+
 `cd golang-api`
+
 `go mod tidy`
+
 `go run main.go`
 
 #### Endpoint User
